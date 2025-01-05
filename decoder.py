@@ -22,7 +22,7 @@ class Decoder:
                bits_per_char = 8
 
                #decode image
-               for column, row in product(range(height), range(width)): #iterating through image, row first
+               for column, row in product(range(height), range(width)): #iterating through image
                     r, g, b = pixels[row, column]
                     if row == 0 and column == 0: #check whether there is a hidden text
                          first_lsb = self.read_LSB(r)
