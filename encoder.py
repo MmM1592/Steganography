@@ -25,31 +25,25 @@ class Encoder:
             if not text:
                 raise ValueError("Cannot encode empty text")           
             
-            # encode the text in format:
-            # first pixel flags if the image contain text - LSB r = 1, g = flag number, b = b
-            # 8 bits containing info about the length of the text
-            # n * 8 bits containing the text
-            # rest of the pixels is copied from the original image
-            
             text_length = len(text)
             bits_per_char = 8
             
             text_bits = bits_per_char + (text_length * bits_per_char) # info about length of text + n * 8 bits 
-            needed_bits = self.channels + text_bits # + first pixel (flags)
-            available_bits = total_pixels * self.channels # total avaiable bits in image
+            needed_bits = self.channels + text_bits
+            available_bits = total_pixels * self.channels
 
             if available_bits < needed_bits: # check if the message can accommodate 
                 raise ValueError("Image resolution is too low for the text")
 
-            new_image = Image.new(original_image.mode, (width, height)) # if yes -> create a new image
+            new_image = Image.new(original_image.mode, (width, height))
             new_pixels = new_image.load()
 
-            text_length_info = format(text_length * bits_per_char, '08b') #length of text in binary
-            text_in_binary = ''.join(format(char, '08b') for char in text) #text in binary
-            text_in_binary = text_length_info + text_in_binary #add the length info to the beginning
+            text_length_info = format(text_length * bits_per_char, '08b')
+            text_in_binary = ''.join(format(char, '08b') for char in text)
+            text_in_binary = text_length_info + text_in_binary
             text_index = 0
 
-            for column, row in product(range(height), range(width)): #iterating through image, row first
+            for column, row in product(range(height), range(width)): #iterating through image
                 r, g, b = original_pixels[row, column]
                 if row == 0 and column == 0:  # store a flag in the first pixel
                     r = self.modify_LSB(r, 1)
