@@ -9,10 +9,10 @@ Python was chosen for this task due to its extensive range of libraries for imag
 The program has been tested in a Windows environment. To run it properly, you need Python version 3.10.11 or higher and the PILLOW library for image manipulation
 You can install PILLOW via the command line with: pip install pillow
 
-Other libraries that were used are: itertools and os
+Other libraries that were used are: Tkinter for graphics and itertools
 
 ALGORITHM:  
-The program encodes the binary representation of text into the least significant bits (LSB) of individual RGB channels. The process is as follows:
+The program encodes the binary representation of text into the least significant bit (LSB) of individual RGB channel. The process is as follows:
 
 ENCODING:  
   1. The program takes an input image path and the text to be encoded.
@@ -26,7 +26,7 @@ ENCODING:
       Red channel LSB = 1  
       Green channel LSB = flag_number (a constant initialized in the main module)  
       Blue channel = blue channel value is unchanged  
-    Next 8 bits store the length of the text  
+    Next 16 bits store the length of the text  
     Subsequent bits store the binary representation of the text characters  
     Remaining pixels are copied unchanged from the original image  
   
@@ -47,23 +47,32 @@ DECODING:
   7. Finally it converts the binary text back to a string and prints it to the console  
 
 USAGE:  
-Run the program using main.py, and select either the encoding or decoding option  
-Input path in the format: C:\\dir\\dir\\image.png  
+For graphical user interface run main.py
 
 CODE STRUCTURE:  
-The code consists of three components: main.py, encoder.py, and decoder.py  
+The code consists of four components: main.py, encoder.py, decoder.py and gui.py
 
 main.py:  
-This file determines which part of the program (encoding or decoding) to execute  
+This file serves for running the whole program
 
 encoder.py:  
-  This class contains two functions:  
+  This class contains four functions: 
+    convert_text_to_binary(self, str text): converts text to binary
+    check_text_size(self, int width, int height, str text_in_binary) - checks if the text can accomodate to the image
     modify_LSB(self, int rgb_value, str bit): a function to overwrite the LSB of a channel with a specific bit  
     encode(self, str input_path): the main encoding function that implements the algorithm  
     
 decoder.py:  
-  This class also contains two functions:  
+  This class contains three functions:  
     read_LSB(self, int rgb_value): a function to extract the LSB from a channel  
+    binary_to_text(self, str hidden_text) - converts binary to a text
     decode(self, str input_path): the decoding function that implements the algorithm
+
+gui.py: 
+  This class contains four functions: 
+    upload_image(self): a function for displaying an image a user is working with
+    encode(self): calls a function encode from encoder
+    decode(self): calls a function decode from decoder
+    save_image(self): saves the image
 
 
