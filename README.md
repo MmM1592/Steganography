@@ -68,7 +68,7 @@ decoder.py:
     binary_to_text(self, str hidden_text) - converts binary to a text  
     decode(self, str input_path): the decoding function that implements the algorithm  
 
-gui.py: 
+gui.py:  
   This class contains four functions: 
     upload_image(self): a function for displaying an image a user is working with  
     encode(self): calls a function encode from encoder  
