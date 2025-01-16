@@ -56,23 +56,23 @@ main.py:
 This file serves for running the whole program  
 
 encoder.py:  
-  This class contains four functions: 
-    convert_text_to_binary(self, str text): converts text to binary  
-    check_text_size(self, int width, int height, str text_in_binary) - checks if the text can accomodate to the image  
-    modify_LSB(self, int rgb_value, str bit): a function to overwrite the LSB of a channel with a specific bit  
-    encode(self, str input_path): the main encoding function that implements the algorithm  
+  This class contains four functions:  
+      convert_text_to_binary(self, str text): converts text to binary  
+      check_text_size(self, int width, int height, str text_in_binary) - checks if the text can accomodate to the image  
+      modify_LSB(self, int rgb_value, str bit): a function to overwrite the LSB of a channel with a specific bit  
+      encode(self, str input_path): the main encoding function that implements the algorithm  
     
 decoder.py:  
   This class contains three functions:  
-    read_LSB(self, int rgb_value): a function to extract the LSB from a channel  
-    binary_to_text(self, str hidden_text) - converts binary to a text  
-    decode(self, str input_path): the decoding function that implements the algorithm  
+      read_LSB(self, int rgb_value): a function to extract the LSB from a channel  
+      binary_to_text(self, str hidden_text) - converts binary to a text  
+      decode(self, str input_path): the decoding function that implements the algorithm  
 
 gui.py:  
   This class contains four functions:  
-    upload_image(self): a function for displaying an image a user is working with  
-    encode(self): calls a function encode from encoder  
-    decode(self): calls a function decode from decoder  
-    save_image(self): saves the image  
+      upload_image(self): a function for displaying an image a user is working with  
+      encode(self): calls a function encode from encoder  
+      decode(self): calls a function decode from decoder  
+      save_image(self): saves the image  
 
 
