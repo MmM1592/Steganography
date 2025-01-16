@@ -69,7 +69,7 @@ decoder.py:
     decode(self, str input_path): the decoding function that implements the algorithm  
 
 gui.py:  
-  This class contains four functions: 
+  This class contains four functions:  
     upload_image(self): a function for displaying an image a user is working with  
     encode(self): calls a function encode from encoder  
     decode(self): calls a function decode from decoder  
